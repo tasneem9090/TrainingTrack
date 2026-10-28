@@ -1,0 +1,167 @@
+﻿@model List<TraineeModel>
+@{
+    ViewData["Title"] = "TraineeList";
+    Layout = "~/Views/Shared/Menut.cshtml";
+}
+
+<style>
+.statistics-box {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.statistics-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.statistics-header h2 {
+    color: #343a40;
+    font-weight: 600;
+}
+
+.statistics-header p {
+    color: #6c757d;
+}
+
+/* رأس الجدول */
+.statistics-table thead th {
+    background-color: #343a40;
+    color: white;
+    padding: 15px;
+}
+
+/* خلايا الجدول */
+.statistics-table tbody td {
+    padding: 15px;
+    vertical-align: middle;
+}
+
+/* الصف عند المرور عليه */
+.statistics-table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* عدد الإناث */
+.female-number {
+    color: #c2185b;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* عدد الذكور */
+.male-number {
+    color: #1565c0;
+    font-size: 20px;
+    font-weight: bold;
+}
+</style>
+
+<form method="post">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>الجنس</th>
+                            <th>الرقم</th>
+                            <th>الجنسية</th>
+                            <th>الاجراءات</th>
+
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (TraineeModel  trainee in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @trainee.Name
+
+                                </td>
+
+
+                                <td>
+                                    @trainee.Gender
+                                </td>
+                                <td>
+                                    @trainee.Phone
+                                </td>
+                                <td>
+                                    @trainee.Nationality.Name
+
+                                </td>
+
+                           
+
+                                <td>
+                                    <input type="submit" value="حذف" class="btn btn-primary " style="background:blue" asp-action="Delete" asp-route-id="@trainee.Id" />
+                                    <input type="submit" value="تعديل" class="btn btn-primary " style="background:blue" asp-action="Edit" asp-route-id="@trainee.Id" />
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+            </div>
+
+
+        </div>
+    </div>
+    </div>
+</form>
+
+<div class="container mt-5">
+
+<div class="statistics-box">
+
+    <div class="statistics-header">
+        <h2>إحصائيات المسجلين</h2>
+        <p>إجمالي عدد المسجلين حسب الجنس</p>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table statistics-table text-center">
+
+            <thead>
+                <tr>
+                    
+                    <th>الجنس</th>
+                    <th>العدد</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    
+                    <td>أنثى</td>
+                    <td class="female-number">
+                    
+                            @ViewBag.FemaleCount
+                </tr>
+
+                <tr>
+                    
+                    <td>ذكر</td>
+                    <td class="male-number">
+                            @ViewBag.MaleCount
+                        </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+
+</div>
+
+

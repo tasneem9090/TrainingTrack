@@ -1,0 +1,146 @@
+﻿@model List<BookDistributionModel>
+@{
+    ViewData["Title"] = "BookDistributionList";
+    Layout = "~/Views/Shared/Menut.cshtml";
+}
+
+<form method="post">
+<div class="container py-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <h2 class="fw-bold">
+                توزيع الكتب
+            </h2>
+
+            <p class="text-muted">
+                قائمة المدربين الذين استلموا الكتب
+            </p>
+        </div>
+
+        <a asp-action="NewBookDistribution"
+           class="btn btn-primary">
+
+            <i class="bi bi-plus-circle"></i>
+            توزيع كتاب
+
+        </a>
+
+    </div>
+
+
+    <!-- Total Books -->
+
+    <div class="row mb-4">
+
+        <div class="col-md-4">
+
+            <div class="card border-0 shadow-sm rounded-4">
+
+                <div class="card-body text-center">
+
+                    <i class="bi bi-book text-primary fs-1"></i>
+
+                    <h6 class="text-muted mt-2">
+                        إجمالي الكتب الموزعة
+                    </h6>
+
+                    <h2 class="fw-bold text-primary">
+                        @ViewBag.TotalBooks
+                    </h2>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- جدول التوزيع -->
+
+    <div class="card border-0 shadow rounded-4">
+
+        <div class="card-body">
+
+            <div class="table-responsive">
+
+                <table class="table table-hover align-middle text-center">
+
+                    <thead class="table-primary">
+
+                        <tr>
+
+                        
+                            <th>الاقليم</th>
+                            <th>المحافظة</th>
+                            <th>الموظف</th>
+                            <th>الراتب</th>
+                            <th>تاريخ الصرف</th>
+                             <th>القاعة</th>
+                            <th>عدد الواتب الموزعة</th>
+                            <th>الإجراءات</th>
+
+                        </tr>
+                          </thead>
+                    <tbody>
+                        @foreach(BookDistributionModel book in Model)
+                        {
+                           <tr>
+                                <td>
+                                    @book.Name
+
+                                </td>
+                                <td>
+                                    @book.Governorate.Name
+                                </td>
+                                <td>
+                                        @($"{book.Trainer.FirstName}\u00A0{book.Trainer.LastName}")
+                                </td>
+                                <td>
+                                    @book.Book.Name
+
+                                </td>
+                                <td>
+                                    @book.DistributionDate
+                                </td>
+                                <td>
+                                    @book.Hall.Name
+                                </td>
+                           
+                                <td>
+                                    @book.NumberOfCopies
+                                    </td>
+
+                           
+                                    @* <span class="badge badge-primary p-2">
+                                        @book.TotalBooks كتاب
+                                        
+                                    </span> *@
+                                 
+                                  
+                                <td>
+                                    <input type="submit" value="حذف" class="btn btn-primary " style="background:blue" asp-action="Delete" asp-route-id="@book.Id" />
+                                    <input type="submit" value="تعديل" class="btn btn-primary " style="background:blue" asp-action="Edit" asp-route-id="@book.Id" />
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+             
+                            <div class="d-flex justify-content-end mt-3">
+                            <div class="alert alert-primary mb-0">
+                                <strong>المجموع: @ViewBag.TotalCopies</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+ 
+

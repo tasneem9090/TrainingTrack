@@ -1,0 +1,381 @@
+﻿@model TrainerModel
+@{
+    ViewData["Title"] = "NewTrainer";
+    Layout = "~/Views/Shared/Menut.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>بيانات الموظف</title>
+
+    <!-- Bootstrap RTL -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Tahoma, Arial, sans-serif;
+            background: linear-gradient(135deg, #eaf4ff, #f8fbff);
+            min-height: 100vh;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 15px;
+        }
+
+        .trainer-card {
+            width: 100%;
+            max-width: 900px;
+            background: #fff;
+            padding: 45px;
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0, 80, 180, 0.15);
+            border: 1px solid #e1efff;
+        }
+
+        /* العنوان */
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .icon {
+            width: 80px;
+            height: 80px;
+            margin: auto;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient( 135deg, #0d6efd, #004bb5 );
+            color: white;
+            font-size: 35px;
+            box-shadow: 0 10px 25px rgba(13, 110, 253, 0.3);
+        }
+
+        .header h2 {
+            color: #075ec9;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #718096;
+            margin: 0;
+        }
+
+        /* Labels */
+
+        .form-label {
+            font-weight: bold;
+            color: #24415f;
+            margin-bottom: 8px;
+        }
+
+        /* الحقول */
+
+        .input-group-text {
+            background: #eaf3ff;
+            color: #0d6efd;
+            border: 1px solid #d5e7ff;
+            min-width: 52px;
+            justify-content: center;
+        }
+
+        .form-control {
+            height: 52px;
+            border: 1px solid #d5e7ff;
+            background: #fbfdff;
+        }
+
+            .form-control:focus {
+                border-color: #0d6efd;
+                box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.10);
+            }
+
+        /* الأزرار */
+
+        .buttons {
+            margin-top: 35px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            height: 52px;
+            min-width: 190px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: linear-gradient( 135deg, #0d6efd, #0054c7 );
+            border: none;
+            box-shadow: 0 8px 20px rgba(13, 110, 253, 0.25);
+        }
+
+            .btn-primary:hover {
+                background: linear-gradient( 135deg, #095dcc, #00439f );
+                transform: translateY(-2px);
+            }
+
+        .btn-outline-secondary {
+            border: 1px solid #cbd5e1;
+        }
+
+        /* موبايل */
+
+        .media (max-width: 768px) {
+            .trainer-card
+
+        {
+            padding: 30px 20px;
+        }
+
+        .header h2 {
+            font-size: 25px;
+        }
+
+        .icon {
+            width: 70px;
+            height: 70px;
+            font-size: 30px;
+        }
+
+        .buttons {
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 100%;
+        }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page">
+
+        <div class="trainer-card">
+
+            <!-- العنوان -->
+            <div class="header">
+
+                <div class="icon">
+                    <i class="bi bi-person-badge-fill"></i>
+                </div>
+
+                <h2>بيانات الموظف</h2>
+
+                <p>
+                    
+                </p>
+
+            </div>
+
+
+            <!-- النموذج -->
+            <form method="post">
+
+                <div class="row g-4">
+
+                    <!-- الاسم -->
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            الاسم
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                <i class="bi bi-person"></i>
+                            </span>
+
+                            <input type="text"
+                                   class="form-control"
+                                   asp-for="FirstName"
+                                   placeholder="أدخل الاسم"
+                                   required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- اسم العائلة -->
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            اسم العائلة
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                <i class="bi bi-person"></i>
+                            </span>
+
+                            <input type="text"
+                                   class="form-control"
+                                   asp-for="LastName"
+                                   placeholder="أدخل اسم العائلة"
+                                   required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- تاريخ الميلاد -->
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            تاريخ الميلاد
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                <i class="bi bi-calendar-event"></i>
+                            </span>
+
+                            <input type="date"
+                                   asp-for="DateofBirth"
+                                   class="form-control"
+                                   required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- رقم الهاتف -->
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            رقم الهاتف
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                <i class="bi bi-telephone"></i>
+                            </span>
+
+                            <input type="tel"
+                                   class="form-control"
+                                   asp-for="Phone"
+                                   placeholder="07XXXXXXXX"
+                                   required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- الإقامة -->
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            مكان الإقامة
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                <i class="bi bi-geo-alt"></i>
+                            </span>
+
+                            <input type="text"
+                                   class="form-control"
+                                   asp-for="address"
+                                   placeholder="أدخل مكان الإقامة"
+                                   required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- الإيميل -->
+                    <div class="col-md-6">
+
+                        <label class="form-label">
+                            البريد الإلكتروني
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                <i class="bi bi-envelope"></i>
+                            </span>
+
+                            <input type="email"
+                                   class="form-control"
+                                   asp-for="Email"
+                                   placeholder="example@email.com"
+                                   required>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+
+
+
+
+                <div class="d-grid mt-4">
+
+                    <input type="submit" value="حفظ البيانات" class="btn btn-primary" asp-action="Save" />
+
+                </div>
+
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+</body>
+</html>
+
+
+

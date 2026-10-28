@@ -1,0 +1,155 @@
+﻿@model vmBookDistribution
+
+@{
+    ViewData["Title"] = "NewBookDistribution";
+    Layout = "~/Views/Shared/Menut.cshtml";
+}
+
+
+<form method="post"  dir="rtl">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+
+                    <!-- Header -->
+                    <div class="bg-primary text-white text-center py-4">
+                        <i class="bi bi-book fs-1"></i>
+
+                        <h3 class="fw-bold mt-2 mb-1">
+                            بيانات توزيع الكتب
+                        </h3>
+
+                        <p class="mb-0 opacity-75">
+                            يرجى إدخال بيانات توزيع الكتاب بشكل صحيح
+                        </p>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="card-body p-4 p-md-5">
+
+                        <div class="row g-4">
+
+                            <!-- الإقليم -->
+                            <div class="col-12">
+                                <label class="form-label fw-bold">
+                                    <i class="bi bi-geo-alt text-primary ms-1"></i>
+                                    الإقليم
+                                </label>
+
+                                <input type="text"
+                                       class="form-control form-control-lg"
+                                       asp-for="bookDistributionModel.Name"
+                                       placeholder="أدخل اسم الإقليم" />
+                            </div>
+
+                            <!-- المحافظة -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">
+                                    <i class="bi bi-building text-primary ms-1"></i>
+                                    المحافظة
+                                </label>
+
+                                <select class="form-select form-select-lg"
+                                        asp-items='new SelectList(Model.ligovernorateModels, "Id", "Name")'
+                                        asp-for="bookDistributionModel.GovernorateId">
+                                    <option value="">-- اختر المحافظة --</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">
+                                    <i class="bi bi-person text-primary ms-1"></i>
+                                </label>
+
+                                <select class="form-select form-select-lg"
+                                        asp-items='new SelectList(Model.litrainerModels, "Id", "FirstName")'
+                                        asp-for="bookDistributionModel.TrainerId">
+                                    <option value="">-- اختر الموظف --</option>
+                                </select>
+                            </div>
+
+                            <!-- القاعة -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">
+                                    <i class="bi bi-door-open text-primary ms-1"></i>
+                                    القاعة
+                                </label>
+
+                                <select class="form-select form-select-lg"
+                                        asp-items='new SelectList(Model.lihallModels, "Id", "Name")'
+                                        asp-for="bookDistributionModel.HallId">
+                                    <option value="">-- اختر القاعة --</option>
+                                </select>
+                            </div>
+
+                            <!-- الكتاب -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">
+                                    <i class="bi bi-book text-primary ms-1"></i>
+                                    اسم الكتاب
+                                </label>
+
+                                <select class="form-select form-select-lg"
+                                        asp-items='new SelectList(Model.libookModels, "Id", "Name")'
+                                        asp-for="bookDistributionModel.BookId">
+                                    <option value="">-- اختر الكتاب --</option>
+                                </select>
+                            </div>
+
+                            <!-- تاريخ التوزيع -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">
+                                    <i class="bi bi-calendar-date text-primary ms-1"></i>
+                                    تاريخ توزيع الكتاب
+                                </label>
+
+                                <input type="date"
+                                       class="form-control form-control-lg"
+                                       asp-for="bookDistributionModel.DistributionDate" />
+                            </div>
+
+                            <!-- عدد النسخ -->
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">
+                                    <i class="bi bi-stack text-primary ms-1"></i>
+                                    عدد النسخ التي استلمها المدرب
+                                </label>
+
+                                <input type="number"
+                                       min="1"
+                                       class="form-control form-control-lg"
+                                       asp-for="bookDistributionModel.NumberOfCopies"
+                                       placeholder="أدخل عدد النسخ" />
+                            </div>
+
+                        </div>
+
+                        <!-- Divider -->
+                        <hr class="my-4">
+
+                        <!-- Buttons -->
+                        <div class="d-flex gap-2 justify-content-end">
+
+                            <button type="reset"
+                                    class="btn btn-light border px-4 py-2">
+                                <i class="bi bi-arrow-counterclockwise ms-1"></i>
+                                إعادة تعيين
+                            </button>
+
+                            <input type="submit"
+                                   class="btn btn-primary px-5 py-2" value="إضافة" asp-action="Save">
+                                <i class="bi bi-plus-circle ms-1"></i>
+                                
+                            
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>

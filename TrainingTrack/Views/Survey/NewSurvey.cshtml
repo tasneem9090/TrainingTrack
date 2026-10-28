@@ -1,0 +1,792 @@
+﻿@{
+    ViewData["Title"] = "NewSurvey";
+    Layout = "~/Views/Shared/Menut.cshtml";
+}
+
+
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>تقييم الموظفين | Tech Company</title>
+
+    <!-- Bootstrap 5 RTL -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+          rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #5b5ce2;
+            --primary-dark: #4445c5;
+            --secondary: #8b8cf8;
+            --background: #f5f6fc;
+            --text-dark: #20243a;
+            --text-muted: #858ba5;
+            --border: #e9eaf3;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--background);
+            color: var(--text-dark);
+            min-height: 100vh;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #3435a9, #6869ef);
+            padding: 45px 20px 100px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .hero::before {
+                content: "";
+                position: absolute;
+                width: 300px;
+                height: 300px;
+                border: 50px solid rgba(255,255,255,.07);
+                border-radius: 50%;
+                top: -130px;
+                left: -70px;
+            }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .company-logo {
+            width: 55px;
+            height: 55px;
+            background: rgba(255,255,255,.15);
+            border: 1px solid rgba(255,255,255,.25);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 27px;
+        }
+
+        .hero h1 {
+            font-size: clamp(25px, 4vw, 36px);
+            font-weight: 800;
+            margin-top: 28px;
+        }
+
+        .hero p {
+            color: #e1e2ff;
+            line-height: 1.9;
+            max-width: 650px;
+        }
+
+        .survey-wrapper {
+            max-width: 900px;
+            margin: -65px auto 50px;
+            padding: 0 16px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .survey-card {
+            background: white;
+            border-radius: 22px;
+            box-shadow: 0 15px 50px rgba(45, 48, 100, .08);
+            padding: 35px;
+            margin-bottom: 22px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 19px;
+            font-weight: 800;
+            margin-bottom: 25px;
+        }
+
+        .section-icon {
+            width: 43px;
+            height: 43px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #efefff;
+            color: var(--primary);
+            font-size: 21px;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .form-control,
+        .form-select {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 13px 15px;
+            font-family: inherit;
+            font-size: 14px;
+            background-color: #fcfcff;
+        }
+
+            .form-control:focus,
+            .form-select:focus {
+                border-color: var(--primary);
+                box-shadow: 0 0 0 4px rgba(91, 92, 226, .1);
+                background: white;
+            }
+
+        .rating-item {
+            padding: 20px 0;
+            border-bottom: 1px solid #f0f1f7;
+        }
+
+            .rating-item:last-child {
+                border-bottom: none;
+            }
+
+        .rating-question {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .rating-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+        }
+
+        .rating-option {
+            cursor: pointer;
+        }
+
+            .rating-option input {
+                display: none;
+            }
+
+            .rating-option span {
+                display: inline-block;
+                padding: 9px 15px;
+                border: 1px solid var(--border);
+                border-radius: 10px;
+                font-size: 12px;
+                color: #727891;
+                transition: .2s;
+            }
+
+            .rating-option input:checked + span {
+                background: #efefff;
+                border-color: var(--primary);
+                color: var(--primary);
+                font-weight: 700;
+            }
+
+            .rating-option span:hover {
+                border-color: var(--primary);
+            }
+
+        .overall-rating {
+            background: linear-gradient(135deg, #f5f4ff, #fafaff);
+            border: 1px solid #e9e7ff;
+            border-radius: 17px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            direction: ltr;
+            margin: 18px 0 10px;
+        }
+
+        .star {
+            font-size: 36px;
+            color: #d9dbea;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+            .star.active {
+                color: #ffb938;
+            }
+
+            .star:hover {
+                transform: scale(1.15);
+            }
+
+        .rating-caption {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 13px;
+            font-family: inherit;
+            font-weight: 700;
+            width: 100%;
+            transition: .25s;
+        }
+
+            .submit-btn:hover {
+                background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(91, 92, 226, .2);
+            }
+
+        .privacy-note {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 18px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 0 20px 30px;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+
+        .media (max-width: 576px) {
+            .hero
+
+        {
+            padding-top: 30px;
+        }
+
+        .survey-card {
+            padding: 23px 18px;
+            border-radius: 17px;
+        }
+
+        .rating-option span {
+            padding: 8px 10px;
+            font-size: 11px;
+        }
+
+        .star {
+            font-size: 31px;
+        }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-content">
+
+            <div class="d-flex align-items-center gap-3">
+                <div class="company-logo">
+                    <i class="bi bi-code-slash"></i>
+                </div>
+
+                <div>
+                    <h5 class="fw-bold mb-1">PixelSoft</h5>
+                    <small class="text-white-50">
+                        Web & Application Development
+                    </small>
+                </div>
+            </div>
+
+            <h1>صوتك يصنع الفرق 💜</h1>
+
+            <p class="mb-0">
+                نؤمن أن نجاحنا يبدأ من فريقنا.
+                شاركنا رأيك حول بيئة العمل وتجربتك معنا،
+                وساعدنا في بناء مكان عمل أفضل للجميع.
+            </p>
+
+        </div>
+    </header>
+
+
+    <!-- Survey -->
+    <main class="survey-wrapper">
+
+        <form id="employeeSurvey">
+
+            <!-- Employee Information -->
+            <section class="survey-card">
+
+                <div class="section-title">
+                    <div class="section-icon">
+                        <i class="bi bi-person-badge"></i>
+                    </div>
+
+                    <div>
+                        <div>معلومات الموظف</div>
+                        <small class="text-muted fw-normal fs-6">
+                            المعلومات الأساسية
+                        </small>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <label class="form-label" for="employeeName">
+                            اسم الموظف
+                        </label>
+
+                        <input type="text"
+                               class="form-control"
+                               id="employeeName"
+                               placeholder="أدخل اسمك"
+                               required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label" for="department">
+                            القسم
+                        </label>
+
+                        <select class="form-select"
+                                id="department"
+                                required>
+
+                            <option value="">اختر القسم</option>
+                            <option>تطوير الواجهات الأمامية</option>
+                            <option>تطوير الواجهات الخلفية</option>
+                            <option>تطوير تطبيقات الهاتف</option>
+                            <option>UI/UX Design</option>
+                            <option>Quality Assurance</option>
+                            <option>إدارة المشاريع</option>
+                            <option>الموارد البشرية</option>
+                            <option>قسم آخر</option>
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label" for="experience">
+                            مدة العمل في الشركة
+                        </label>
+
+                        <select class="form-select"
+                                id="experience"
+                                required>
+
+                            <option value="">اختر المدة</option>
+                            <option>أقل من 6 أشهر</option>
+                            <option>من 6 أشهر إلى سنة</option>
+                            <option>من سنة إلى 3 سنوات</option>
+                            <option>أكثر من 3 سنوات</option>
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label" for="workModel">
+                            نظام العمل
+                        </label>
+
+                        <select class="form-select"
+                                id="workModel"
+                                required>
+
+                            <option value="">اختر النظام</option>
+                            <option>من المكتب</option>
+                            <option>عن بُعد</option>
+                            <option>نظام هجين</option>
+
+                        </select>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Work Environment -->
+            <section class="survey-card">
+
+                <div class="section-title">
+                    <div class="section-icon">
+                        <i class="bi bi-building"></i>
+                    </div>
+
+                    تقييم بيئة العمل
+                </div>
+
+                <div id="workQuestions"></div>
+
+            </section>
+
+
+            <!-- Management -->
+            <section class="survey-card">
+
+                <div class="section-title">
+                    <div class="section-icon">
+                        <i class="bi bi-people"></i>
+                    </div>
+
+                    تقييم الإدارة والتواصل
+                </div>
+
+                <div id="managementQuestions"></div>
+
+            </section>
+
+
+            <!-- Career Growth -->
+            <section class="survey-card">
+
+                <div class="section-title">
+                    <div class="section-icon">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </div>
+
+                    تقييم التطور الوظيفي
+                </div>
+
+                <div id="growthQuestions"></div>
+
+            </section>
+
+
+            <!-- Overall Rating -->
+            <section class="survey-card">
+
+                <div class="section-title">
+                    <div class="section-icon">
+                        <i class="bi bi-star"></i>
+                    </div>
+
+                    التقييم العام للشركة
+                </div>
+
+                <div class="overall-rating">
+
+                    <h6 class="fw-bold">
+                        ما مدى رضاك العام عن العمل في الشركة؟
+                    </h6>
+
+                    <div class="stars" id="starRating">
+
+                        <i class="bi bi-star-fill star"
+                           data-value="1"
+                           role="button"
+                           aria-label="نجمة واحدة"></i>
+
+                        <i class="bi bi-star-fill star"
+                           data-value="2"
+                           role="button"
+                           aria-label="نجمتان"></i>
+
+                        <i class="bi bi-star-fill star"
+                           data-value="3"
+                           role="button"
+                           aria-label="ثلاث نجوم"></i>
+
+                        <i class="bi bi-star-fill star"
+                           data-value="4"
+                           role="button"
+                           aria-label="أربع نجوم"></i>
+
+                        <i class="bi bi-star-fill star"
+                           data-value="5"
+                           role="button"
+                           aria-label="خمس نجوم"></i>
+
+                    </div>
+
+                    <div class="rating-caption" id="ratingText">
+                        اختر عدد النجوم
+                    </div>
+
+                    <input type="hidden"
+                           id="overallRating"
+                           value="">
+
+                </div>
+
+            </section>
+
+
+            <!-- Suggestions -->
+            <section class="survey-card">
+
+                <div class="section-title">
+                    <div class="section-icon">
+                        <i class="bi bi-chat-left-text"></i>
+                    </div>
+
+                    اقتراحاتك وملاحظاتك
+                </div>
+
+                <div class="mb-4">
+
+                    <label class="form-label" for="bestThing">
+                        ما أكثر شيء يعجبك في الشركة؟
+                    </label>
+
+                    <textarea class="form-control"
+                              id="bestThing"
+                              rows="3"
+                              placeholder="شاركنا رأيك..."></textarea>
+
+                </div>
+
+                <div class="mb-4">
+
+                    <label class="form-label" for="improvements">
+                        ما الذي تقترح تحسينه؟
+                    </label>
+
+                    <textarea class="form-control"
+                              id="improvements"
+                              rows="3"
+                              placeholder="أفكارك تساعدنا على التطور..."></textarea>
+
+                </div>
+
+                <div>
+
+                    <label class="form-label" for="recommend">
+                        هل تنصح الآخرين بالعمل في شركتنا؟
+                    </label>
+
+                    <select class="form-select" id="recommend" required>
+
+                        <option value="">اختر إجابتك</option>
+                        <option>بالتأكيد</option>
+                        <option>نعم، على الأرجح</option>
+                        <option>لست متأكدًا</option>
+                        <option>على الأرجح لا</option>
+                        <option>لا</option>
+
+                    </select>
+
+                </div>
+
+            </section>
+
+
+            <!-- Submit -->
+            <section class="survey-card">
+
+                <button type="submit" class="submit-btn">
+                    <i class="bi bi-send ms-2"></i>
+                    إرسال التقييم
+                </button>
+
+                <div class="privacy-note">
+                    <i class="bi bi-shield-check ms-1"></i>
+                    نقدر رأيك ونسعى باستمرار إلى تحسين بيئة العمل.
+                </div>
+
+                <div id="successMessage"
+                     class="alert alert-success mt-4 d-none"
+                     role="status">
+
+                    تم التحقق من التقييم بنجاح!
+                    هذا نموذج تجريبي، ولم تُرسل البيانات إلى خادم.
+
+                </div>
+
+            </section>
+
+        </form>
+
+    </main>
+
+
+    <footer>
+        © 2026 PixelSoft — Web & Application Development
+        <br>
+        صُنع بكل شغف ❤️
+    </footer>
+
+
+    <script>
+        // Survey questions
+        const questionGroups = {
+            workQuestions: [
+                {
+                    name: "environment",
+                    question: "كيف تقيّم بيئة العمل بشكل عام؟"
+                },
+                {
+                    name: "teamwork",
+                    question: "كيف تقيّم التعاون بين أعضاء الفريق؟"
+                },
+                {
+                    name: "tools",
+                    question: "هل الأدوات والبرامج المتاحة مناسبة لعملك؟"
+                },
+                {
+                    name: "balance",
+                    question: "كيف تقيّم التوازن بين العمل والحياة الشخصية؟"
+                }
+            ],
+
+            managementQuestions: [
+                {
+                    name: "management",
+                    question: "كيف تقيّم دعم الإدارة للموظفين؟"
+                },
+                {
+                    name: "communication",
+                    question: "كيف تقيّم التواصل ووضوح المتطلبات؟"
+                },
+                {
+                    name: "feedback",
+                    question: "هل تحصل على ملاحظات تساعدك على التطور؟"
+                }
+            ],
+
+            growthQuestions: [
+                {
+                    name: "learning",
+                    question: "هل تتوفر فرص لتعلم تقنيات جديدة؟"
+                },
+                {
+                    name: "promotion",
+                    question: "هل ترى فرصًا واضحة للتقدم الوظيفي؟"
+                },
+                {
+                    name: "salary",
+                    question: "كيف تقيّم الراتب والمزايا مقارنة بمهامك؟"
+                }
+            ]
+        };
+
+        const ratingOptions = [
+            "ضعيف جدًا",
+            "ضعيف",
+            "متوسط",
+            "جيد",
+            "ممتاز"
+        ];
+
+        // Generate rating questions
+        function renderQuestions(containerId, questions) {
+            const container = document.getElementById(containerId);
+
+            container.innerHTML = questions.map((item, index) => `
+                <div class="rating-item">
+
+                    <div class="rating-question">
+                        ${index + 1}. ${item.question}
+                    </div>
+
+                    <div class="rating-options">
+
+                        ${ratingOptions.map((label, i) => `
+                            <label class="rating-option">
+
+                                <input
+                                    type="radio"
+                                    name="${item.name}"
+                                    value="${i + 1}"
+                                    required>
+
+                                <span>${label}</span>
+
+                            </label>
+                        `).join("")}
+
+                    </div>
+
+                </div>
+            `).join("");
+        }
+
+        Object.entries(questionGroups).forEach(
+            ([containerId, questions]) => {
+                renderQuestions(containerId, questions);
+            }
+        );
+
+        // Overall star rating
+        const stars = document.querySelectorAll(".star");
+        const ratingInput = document.getElementById("overallRating");
+        const ratingText = document.getElementById("ratingText");
+
+        const ratingLabels = [
+            "غير راضٍ إطلاقًا",
+            "غير راضٍ",
+            "راضٍ إلى حد ما",
+            "راضٍ",
+            "راضٍ جدًا"
+        ];
+
+        stars.forEach((star) => {
+            star.addEventListener("click", () => {
+                const value = Number(star.dataset.value);
+
+                ratingInput.value = value;
+
+                stars.forEach((item) => {
+                    const itemValue = Number(item.dataset.value);
+
+                    item.classList.toggle(
+                        "active",
+                        itemValue <= value
+                    );
+                });
+
+                ratingText.textContent = ratingLabels[value - 1];
+            });
+        });
+
+        // Form submission
+        const surveyForm = document.getElementById("employeeSurvey");
+        const successMessage = document.getElementById("successMessage");
+
+        surveyForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            if (!surveyForm.checkValidity()) {
+                surveyForm.reportValidity();
+                return;
+            }
+
+            if (!ratingInput.value) {
+                alert("يرجى اختيار التقييم العام للشركة بالنجوم.");
+                return;
+            }
+
+            // Demo only: no data is sent or stored.
+            successMessage.classList.remove("d-none");
+
+            successMessage.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        });
+    </script>
+
+</body>
+</html>

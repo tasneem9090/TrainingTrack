@@ -1,0 +1,458 @@
+﻿@model SignUp
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>إنشاء حساب</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Cairo', sans-serif;
+            background: radial-gradient(circle at top right, rgba(102, 126, 234, 0.35), transparent 35%), radial-gradient(circle at bottom left, rgba(118, 75, 162, 0.35), transparent 35%), linear-gradient(135deg, #f4f7ff, #eef1f8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 15px;
+        }
+
+        .register-wrapper {
+            width: 100%;
+            max-width: 1050px;
+            min-height: 620px;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: 0 25px 70px rgba(48, 55, 90, 0.18), 0 5px 20px rgba(48, 55, 90, 0.08);
+            display: flex;
+        }
+
+        /* قسم الصورة */
+        .training-section {
+            width: 50%;
+            position: relative;
+            background: linear-gradient( rgba(31, 41, 90, 0.55), rgba(76, 45, 120, 0.75) ), url('/images/training.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 50px;
+        }
+
+        .training-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .training-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.18);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            backdrop-filter: blur(10px);
+        }
+
+        .training-content h1 {
+            font-size: 34px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .training-content p {
+            font-size: 17px;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .training-badge {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 9px 20px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            font-size: 14px;
+        }
+
+        /* قسم التسجيل */
+        .register-section {
+            width: 50%;
+            padding: 55px 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .register-content {
+            width: 100%;
+            max-width: 430px;
+            margin: auto;
+        }
+
+        .logo {
+            width: 58px;
+            height: 58px;
+            border-radius: 17px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .register-content h2 {
+            font-size: 30px;
+            font-weight: 800;
+            color: #25283d;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #85899d;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #44485c;
+            margin-bottom: 8px;
+        }
+
+        .form-control {
+            height: 52px;
+            border-radius: 12px;
+            border: 1px solid #e1e4ee;
+            padding: 10px 16px;
+            font-family: 'Cairo', sans-serif;
+            font-size: 14px;
+            transition: all 0.25s ease;
+        }
+
+            .form-control:focus {
+                border-color: #667eea;
+                box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.10);
+                outline: none;
+            }
+
+        .input-group-custom {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9da2b5;
+            font-size: 18px;
+            pointer-events: none;
+        }
+
+        .input-group-custom .form-control {
+            padding-left: 45px;
+        }
+
+        .validation-message {
+            display: block;
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .btn-register {
+            height: 54px;
+            border: none;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            font-family: 'Cairo', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.25);
+            transition: all 0.25s ease;
+        }
+
+            .btn-register:hover {
+                color: white;
+                transform: translateY(-2px);
+                box-shadow: 0 12px 25px rgba(102, 126, 234, 0.35);
+            }
+
+        .login-text {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 13px;
+            color: #85899d;
+        }
+
+            .login-text a {
+                color: #667eea;
+                text-decoration: none;
+                font-weight: 700;
+            }
+
+                .login-text a:hover {
+                    text-decoration: underline;
+                }
+
+        /* Responsive */
+        @@media (max-width: 850px) {
+
+            .register-wrapper {
+                max-width: 520px;
+            }
+
+            .training-section {
+                display: none;
+            }
+
+            .register-section {
+                width: 100%;
+                padding: 45px 35px;
+            }
+        }
+
+        @@media (max-width: 480px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .register-wrapper {
+                border-radius: 20px;
+            }
+
+            .register-section {
+                padding: 35px 22px;
+            }
+
+            .register-content h2 {
+                font-size: 26px;
+            }
+
+            .brand-logo {
+                width: 58px;
+                height: 58px;
+                margin: auto;
+                border-radius: 15px;
+                background: rgba(255,255,255,.12);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 28px;
+                color: #fff;
+                margin-bottom: 12px;
+            }
+
+            .brand h5 {
+                margin: 0;
+                font-weight: 700;
+            }
+          
+           
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="register-wrapper">
+
+        <!-- صورة التدريب -->
+        <div class="training-section">
+
+            <div class="training-content">
+
+               @*  <div class="training-icon">
+                    🎓
+                </div> *@
+
+                    <div class="brand-logo">
+                        <img src="~/images/Plogo.png.jpg"
+                             alt="Logo"
+                             width=100%
+                             height=100%
+                             object-fit=cover; />
+                         
+                </div>
+
+                <br />
+
+                <h5> </h5> 
+
+                <p>
+                    إطار متكامل الابداع والتطوير
+                    تطوير المواقع الإلكترونية والتطبيقات.
+                    تصميم واجهات المستخدم وتجربة المستخدم (UI/UX).
+                    تطوير الأنظمة والبرامج الإدارية.
+                    تقديم الحلول التقنية والدعم الفني.
+                </p>
+
+                <span class="training-badge">
+                    ✦ ابدأ رحلتك الآن
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- نموذج التسجيل -->
+        <div class="register-section">
+
+            <div class="register-content">
+
+              @*   <div class="logo">
+                    ✦
+                </div> *@
+
+
+              
+                <h2>إنشاء حساب</h2>
+
+                <p class="subtitle">
+                    PIXELSOFT
+                </p>
+
+
+                <form method="post">
+
+                    <!-- Email -->
+                    <div class="mb-3">
+
+                        <label for="email" class="form-label">
+                            البريد الإلكتروني
+                        </label>
+
+                        <div class="input-group-custom">
+
+                            <input type="email"
+                                   class="form-control"
+                                   id="email"
+                                   asp-for="Email"
+                                   placeholder="أدخل البريد الإلكتروني"
+                                   required>
+
+                            <span class="input-icon">✉</span>
+
+                        </div>
+
+                        <span asp-validation-for="Email"
+                              class="validation-message">
+                        </span>
+
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="mb-3">
+
+                        <label for="password" class="form-label">
+                            كلمة المرور
+                        </label>
+
+                        <div class="input-group-custom">
+
+                            <input type="password"
+                                   class="form-control"
+                                   asp-for="Password"
+                                   id="password"
+                                   placeholder="أدخل كلمة المرور"
+                                   required>
+
+                            <span class="input-icon">🔒</span>
+
+                        </div>
+
+                        <span asp-validation-for="Password"
+                              class="validation-message">
+                        </span>
+
+                    </div>
+
+
+                    <!-- Confirm Password -->
+                    <div class="mb-4">
+
+                        <label for="confirmPassword" class="form-label">
+                            تأكيد كلمة المرور
+                        </label>
+
+                        <div class="input-group-custom">
+
+                            <input type="password"
+                                   class="form-control"
+                                   id="confirmPassword"
+                                   asp-for="ConfirmPassword"
+                                   placeholder="أعد كتابة كلمة المرور"
+                                   required>
+
+                            <span class="input-icon">🔐</span>
+
+                        </div>
+
+                        <span asp-validation-for="ConfirmPassword"
+                              class="validation-message">
+                        </span>
+
+                    </div>
+
+
+                    <!-- Button -->
+                    <input type="submit"
+                           value="إنشاء الحساب"
+                           class="btn btn-register w-100"
+                           asp-action="CreateAccount">
+
+
+                    <div class="login-text">
+                        لديك حساب بالفعل؟
+                        <a class="nav-link" asp-controller="Account" asp-action="SignIn">
+                            تسجيل الدخول
+                        </a>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
