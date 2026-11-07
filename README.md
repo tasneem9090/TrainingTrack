@@ -1,26 +1,46 @@
+<div align="center">
+
 # 🏋️‍♂️ TrainingTrack Web Application
 
-A web application project for training management and tracking, built using modern .NET technologies to provide a seamless experience for managing trainees, trainers, and surveys
+  <p>A modern web application built with .NET technologies for seamless training management, tracking, and evaluation.</p>
 
-🚀 Key Features
-Trainee Management: Add and view trainee data and lists (TraineeList).
+  <p>
+    <a href="#-key-features">Key Features</a> •
+    <p><a href="#%EF%B8%8F-tech-stack">Tech Stack</a> •</p>
+    <a href="#-getting-started">Getting Started</a>
+  </p>
 
-Trainer Management: Track trainer accounts and lists (TrainerList).
+</div>
 
-Survey System: Create and review new surveys to evaluate training (Survey).
+---
 
-Book & Material Distribution: A system for managing and distributing training books and materials (BookDistribution).
-🛠️ Tech Stack
-Primary Language: C#
+## 🚀 Key Features
 
-Framework: ASP.NET Core (MVC / Razor Views)
+* **👥 Trainee Management:** Easily add, view, and manage comprehensive trainee profiles and lists (`TraineeList`).
+* **👨‍🏫 Trainer Management:** Track trainer accounts, details, and active instructor lists (`TrainerList`).
+* **📊 Survey System:** Create interactive surveys and review responses to evaluate training quality (`Survey`).
+* **📚 Book & Material Distribution:** A centralized system for managing and distributing training books and course materials (`BookDistribution`).
 
-Code Management: Git & GitHub
+---
 
+## 🛠️ Tech Stack
 
-##💻 How to Run the Project Locally
-Clone the repository to your local machine.
+* **Primary Language:** `C#`
+* **Framework:** `ASP.NET Core (MVC / Razor Views)`
+* **Version Control:** `Git & GitHub`
 
-Open the project using Visual Studio.
+---
 
-Press the Run button or Ctrl + F5 to launch the application in your browser.
+## 💻 Getting Started
+
+Follow these simple steps to run the project locally on your machine:
+
+### Prerequisites
+* [.NET SDK](https://dotnet.microsoft.com/) (latest recommended version)
+* [Visual Studio](https://visualstudio.microsoft.com/) or Visual Studio Code
+
+### Installation & Running
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/tasneem9090/TrainingTrack.git](https://github.com/tasneem9090/TrainingTrack.git)
