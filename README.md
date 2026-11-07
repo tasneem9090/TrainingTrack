@@ -1,20 +1,26 @@
 # 🏋️‍♂️ TrainingTrack Web Application
 
-مشروع تطبيق ويب لإدارة التدريب ومتابعته، تم بناؤه باستخدام تقنيات .NET الحديثة لتوفير تجربة سلسة لإدارة المتدربين والمدربين والمسوحات.
+A web application project for training management and tracking, built using modern .NET technologies to provide a seamless experience for managing trainees, trainers, and surveys
 
-## 🚀 الميزات الأساسية (Features)
-* **إدارة المتدربين:** إضافة واستعراض بيانات المتدربين وقوائمهم (`TraineeList`).
-* **إدارة المدربين:** متابعة حسابات المدربين وقوائمهم (`TrainerList`).
-* **نظام الاستبيانات والمسوحات:** إنشاء مسوحات جديدة واستعراضها لتقييم التدريب (`Survey`).
-* **توزيع الكتب والمواد:** نظام لإدارة وتوزيع الكتب والمواد التدريبية (`BookDistribution`).
+🚀 Key Features
+Trainee Management: Add and view trainee data and lists (TraineeList).
 
-## 🛠️ التقنيات المستخدمة (Tech Stack)
-* **اللغة الأساسية:** C#
-* **إطار العمل:** ASP.NET Core (MVC / Razor Views)
-* **إدارة الكود:** Git & GitHub
+Trainer Management: Track trainer accounts and lists (TrainerList).
 
-## 💻 كيف تقوم بتشغيل المشروع محلياً؟
-1. قم بعمل `Clone` للمستودع على جهازك.
-2. افتح المشروع باستخدام **Visual Studio**.
-3. اضغط على زر **Run** أو `Ctrl + F5` لتشغيل التطبيق في المتصفح.
+Survey System: Create and review new surveys to evaluate training (Survey).
 
+Book & Material Distribution: A system for managing and distributing training books and materials (BookDistribution).
+🛠️ Tech Stack
+Primary Language: C#
+
+Framework: ASP.NET Core (MVC / Razor Views)
+
+Code Management: Git & GitHub
+
+
+##💻 How to Run the Project Locally
+Clone the repository to your local machine.
+
+Open the project using Visual Studio.
+
+Press the Run button or Ctrl + F5 to launch the application in your browser.
